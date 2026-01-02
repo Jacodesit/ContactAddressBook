@@ -88,6 +88,16 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return redirect('/home');
+    }
+
+    public function trash() {
+        $trashedContacts = Contact::onlyTrashed()->latest()->get();
+
+        return Inertia::render('Homepage/Trash', [
+            'trashedContacts' => $trashedContacts 
+        ]);
     }
 }

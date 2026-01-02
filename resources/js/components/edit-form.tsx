@@ -1,9 +1,9 @@
 import { useForm, usePage, Link } from "@inertiajs/react";
 import { useRoute } from '../../../vendor/tightenco/ziggy';
 
-import type { Contact } from "@/types/Contact";
+import Backbtn from "./back-btn";
 
-import { CircleArrowLeft } from 'lucide-react';
+import type { Contact } from "@/types/Contact";
 
 type Props = {
     contact: Contact;
@@ -30,15 +30,7 @@ export default function EditForm() {
 
     return (
         <div className="p-6 mx-auto w-1/2 ">
-            <div className="flex justify-start w-full mb-5">
-                <Link
-                    href={'/home'}
-                    className="flex items-center gap-1 transition-all duration-300 hover:text-blue-500"
-                >
-                    <CircleArrowLeft size={20} />
-                    Back
-                </Link>
-            </div>
+            <Backbtn />
             <div className="mb-5">
                 <h1 className="text-3xl font-semibold font-[Poppins]">{headline}</h1>
                 <p className="text-gray-500">{subtext}</p>

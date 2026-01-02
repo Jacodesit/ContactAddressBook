@@ -4,12 +4,11 @@ import { useState } from "react";
 import AddContact from "./add-contact-btn";
 import AddContactModal from "./add-contact-modal";
 import ContactDetails from "./contact-details";
-
-import type { Contact } from "@/types/Contact";
-
+import TrashBtn from "./trash-btn";
 import { Mars } from "lucide-react";
 import { Venus } from 'lucide-react';
 
+import type { Contact } from "@/types/Contact";
 
 type pageProps = {
     contacts: Contact[]
@@ -41,7 +40,11 @@ export default function DataContainer() {
                         <p className="text-gray-500">{subtext}</p>
                     </div>
                 </div>
-                <AddContact onClick={() => setToOpen(true)} />
+                <div className="flex gap-1">   
+                    <AddContact onClick={() => setToOpen(true)} />
+                    <TrashBtn />
+                </div>
+                
             </div>
             <div className="grid grid-cols-3 gap-2">
                 { contacts.map(contact => (
@@ -67,7 +70,6 @@ export default function DataContainer() {
                                     <p className="text-xs text-gray-400 group-hover:text-white">{contact.email}</p>
                                     <hr className="my-2"/>
                                     <p className="text-sm group-hover:text-white">{contact.phone}</p>
-                                    
                                 </div>
                             </div>
                         </div>

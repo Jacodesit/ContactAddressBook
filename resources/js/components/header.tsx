@@ -11,7 +11,6 @@ export default function Header() {
             >   
                 <p className="font-[Poppins] font-medium text-2xl">{title}</p>
             </Link>
-            
         </header>
     )
 }
