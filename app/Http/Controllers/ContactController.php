@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -60,7 +61,9 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return Inertia::render('Editpage/Edit', [
+            'contact' => $contact
+        ]);
     }
 
     /**
@@ -68,7 +71,16 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:30',
+            'email' => ['nullable', 'email', Rule::unique('contacts', 'email')->ignore($contact->id)],
+            'phone' => ['required', 'string', 'max:15', Rule::unique('contacts', 'phone')->ignore($contact->id)],
+            'gender' => 'required|in:male,female'
+        ]);
+
+        $contact->update($validated);
+
+        return redirect('/home');
     }
 
     /**

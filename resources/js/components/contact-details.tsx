@@ -1,8 +1,10 @@
+import EditDeleteBtn from "./edDel-btn";
+
 import type { Contact } from "@/types/Contact";
 
 import { CircleX } from "lucide-react";
-import { Trash } from 'lucide-react';
-import { SquarePen } from 'lucide-react';
+import { Mars } from "lucide-react";
+import { Venus } from 'lucide-react';
 
 type Props = {
     isOpenDetails: boolean
@@ -27,8 +29,11 @@ export default function ContactDetails({ isOpenDetails, onCloseDetails, contact 
                     </button>
                 </div>
 
-                <div className="p-6 flex flex-col gap-15">
-                    <div className="flex items-center justify-center flex-col gap-4">
+                <div className="p-6 flex flex-col gap-15 relative">
+                    <div className="absolute right-6">
+                        {contact.gender === 'male'? <Mars size={25} color="#3B82F6" /> : <Venus size={25} color="#EC4899" /> }
+                    </div>
+                    <div className="flex items-center justify-center flex-col gap-4 mt-5">
                         <img 
                             src={contact.avatar} 
                             alt={contact.name}
@@ -40,16 +45,9 @@ export default function ContactDetails({ isOpenDetails, onCloseDetails, contact 
                         </div>
                     </div>
 
-                    <div className="flex gap-2">
-                        <button className="flex-1 p-3 bg-blue-500 rounded text-white flex items-center justify-center gap-2">
-                            <SquarePen />
-                            Edit
-                        </button>
-                        <button className="flex-1 p-3 bg-red-500 rounded text-white flex items-center justify-center gap-2">
-                            <Trash />
-                            Delete
-                        </button>
-                    </div>
+                    <EditDeleteBtn
+                        contact={contact}
+                    />
                 </div>
             </div>
         </div>

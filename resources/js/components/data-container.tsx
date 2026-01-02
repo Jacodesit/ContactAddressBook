@@ -7,6 +7,10 @@ import ContactDetails from "./contact-details";
 
 import type { Contact } from "@/types/Contact";
 
+import { Mars } from "lucide-react";
+import { Venus } from 'lucide-react';
+
+
 type pageProps = {
     contacts: Contact[]
 }
@@ -44,21 +48,27 @@ export default function DataContainer() {
                     <div
                         onClick={() => openDetailsModal(contact)}
                         key={contact.id}
-                        className="group border p-3 flex items-center gap-10 rounded transition-all duration-300 hover:bg-blue-500 hover:cursor-pointer"
+                        className="group border p-3  rounded transition-all duration-300 hover:bg-blue-500 hover:cursor-pointer"
                     >
-                        <div>
-                            <img 
-                                className="h-30"
-                                src={contact.avatar} 
-                                alt={contact.name} 
-                            />
+                        <div className="flex justify-end">
+                            {contact.gender === 'male'? <Mars size={20} color="#3B82F6" /> : <Venus size={20} color="#EC4899" /> }
                         </div>
-                        <div className="">
+                        <div className="flex items-center gap-10">
                             <div>
-                                <h2 className="font-semibold text-xl group-hover:text-white">{contact.name}</h2>
-                                <p className="text-xs text-gray-400 group-hover:text-white">{contact.email}</p>
-                                <hr className="my-2"/>
-                                <p className="text-sm group-hover:text-white">{contact.phone}</p>
+                                <img 
+                                    className="h-30"
+                                    src={contact.avatar} 
+                                    alt={contact.name} 
+                                />
+                            </div>
+                            <div className="">
+                                <div className="">
+                                    <h2 className="font-semibold text-xl group-hover:text-white">{contact.name}</h2>
+                                    <p className="text-xs text-gray-400 group-hover:text-white">{contact.email}</p>
+                                    <hr className="my-2"/>
+                                    <p className="text-sm group-hover:text-white">{contact.phone}</p>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
