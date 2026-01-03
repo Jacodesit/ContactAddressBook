@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 import { useForm } from "@inertiajs/react";
 
 type Props = {
@@ -18,6 +20,7 @@ export default function ContactForm({ onSuccess }: Props) {
             onSuccess: () => {
                 reset();
                 onSuccess();
+                toast.success('Contact added successfully!');
             }
         })
     }

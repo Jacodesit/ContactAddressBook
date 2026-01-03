@@ -34,6 +34,13 @@ export default function TrashContainer() {
                 <h1 className="text-3xl font-semibold font-[Poppins]">{headline}</h1>
                 <p className="text-gray-500">{subtext}</p>
             </div>
+            
+            {trashedContacts.length === 0 && (
+                <div className="flex justify-center items-center h-96">
+                    <p>No deleted contacts found.</p>
+                </div>
+            )}
+            
             <div className="grid grid-cols-3 gap-2">
                 { trashedContacts.map(trashedContact => (
                     <div

@@ -100,4 +100,18 @@ class ContactController extends Controller
             'trashedContacts' => $trashedContacts 
         ]);
     }
+
+    public function restore($id) {
+        $contact = Contact::onlyTrashed()->findOrFail($id);
+        $contact->restore();
+
+        return redirect('/home');
+    }
+
+    public function forceDelete($id) {
+        $contact = Contact::withTrashed()->findorFail($id);
+        $contact->forceDelete();
+
+        return redirect(to: '/trash');
+    }
 }

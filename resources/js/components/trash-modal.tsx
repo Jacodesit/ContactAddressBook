@@ -5,6 +5,8 @@ import { Venus } from 'lucide-react';
 
 import type { Contact } from "@/types/Contact"
 
+import RestoreDeleteBtn from "./res-del-btn";
+
 type Props = {
     isOpenTrash: boolean
     selectedTrash: Contact | null
@@ -44,6 +46,11 @@ export default function TrashDetails({ isOpenTrash, selectedTrash, onCloseTrash 
                             <p className="text-sm text-gray-500">{selectedTrash.email} | {selectedTrash.phone}</p>
                         </div>
                     </div>
+
+                    <RestoreDeleteBtn 
+                        selectedTrash={selectedTrash}
+                        onRestored={onCloseTrash}
+                    />
                 </div>
             </div>
         </div>

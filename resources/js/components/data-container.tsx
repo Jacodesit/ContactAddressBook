@@ -28,6 +28,13 @@ export default function DataContainer() {
         setToOpenDetails(true)
     }
 
+    const [genderFilter, setGenderFilter] = useState<'all' | 'male' | 'female'>('all');
+
+    const filteredContacts = contacts.filter(contact => {
+        if(genderFilter === 'all') return true;
+        return contact.gender === genderFilter;
+    })
+
     return (
         <main className="flex flex-col gap-10">
             <div className="flex justify-between items-center">
@@ -44,10 +51,43 @@ export default function DataContainer() {
                     <AddContact onClick={() => setToOpen(true)} />
                     <TrashBtn />
                 </div>
-                
             </div>
+
+            <div className="flex gap-2">
+                {/* All */}
+                <button
+                    onClick={ () => setGenderFilter('all')}
+                    className={`px-5 py-1 rounded transition-all duration-300 hover:cursor-pointer ${genderFilter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-400 hover:text-white'}`}
+                >
+                    All
+                </button>
+
+                {/* Male */}
+                <button
+                    onClick={() => setGenderFilter('male')}
+                    className={`px-5 py-1 rounded transition-all duration-300 hover:cursor-pointer ${genderFilter === 'male' ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-400 hover:text-white'}`}
+
+                >
+                    Male
+                </button>
+
+                {/* Female */}
+                <button
+                    onClick={() => setGenderFilter('female')}
+                    className={`px-5 py-1 rounded transition-all duration-300 hover:cursor-pointer ${genderFilter === 'female' ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-400 hover:text-white'}`}
+                >
+                    Female
+                </button>
+            </div>
+            
+            {contacts.length === 0 && (
+                <div className="flex items-center justify-center h-96">
+                    <p>No contacts found.</p>
+                </div>
+            )}
+            
             <div className="grid grid-cols-3 gap-2">
-                { contacts.map(contact => (
+                { filteredContacts.map(contact => (
                     <div
                         onClick={() => openDetailsModal(contact)}
                         key={contact.id}

@@ -1,5 +1,6 @@
 import { Link, router } from '@inertiajs/react';
 import { useRoute } from '../../../vendor/tightenco/ziggy';
+import toast from 'react-hot-toast';
 
 import { Trash } from 'lucide-react';
 import { SquarePen } from 'lucide-react';
@@ -18,6 +19,7 @@ export default function EditDeleteBtn({ contact, onDeleted }: Props) {
     const handleDelete = () => {
         router.delete(route('contacts.destroy', {contact: contact.id}), {
             onSuccess: () => {
+                toast.success('Contact moved to trash successfully!');
                 onDeleted()
             }
         })
